@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>{% block title %}{% endblock title %}</title>
     <link href="{% static 'global/css/style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <h1>Bem-vindo(a) à Agenda.</h1>
     <main class="content">
         {% block content %}{% endblock content %}
     </main>
