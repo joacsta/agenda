@@ -132,3 +132,8 @@ MAILERS = {
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+try:
+    from core.local_settings import *
+except ImportError:
+    ...
