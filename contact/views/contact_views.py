@@ -20,6 +20,7 @@ def single_contact(request: HttpRequest, contact_id: int):
 
 def search(request: HttpRequest):
     search_value: str = request.GET.get("q", "").strip()
+
     if not search_value:
         return redirect("contact:index")
 
@@ -28,10 +29,15 @@ def search(request: HttpRequest):
         .filter(
             Q(first_name__icontains=search_value)
             | Q(last_name__icontains=search_value)
-            | Q(phone__icontains=search_value)
-            | Q(email__icontains=search_value)
+            # | Q(phone__icontains=search_value)
+            # | Q(email__icontains=search_value)
         )
         .order_by("-id")
     )
-    context = {"contacts": contacts, "site_title": "Procurando - "}
+    context = {
+        "contacts": contacts,
+        "site_title": "Procurando - ",
+        "search_value": search_value,
+    }
+
     return render(request, "contact/index.html", context)
