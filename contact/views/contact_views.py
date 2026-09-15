@@ -7,8 +7,8 @@ from contact.models import Contact
 
 
 def index(request: HttpRequest):
-    contacts = Contact.objects.filter(show=True).order_by("-id")
-    paginator = Paginator(contacts, 10)
+    contacts = Contact.objects.filter(show=True).order_by("-id")  # type: ignore[]
+    paginator = Paginator(contacts, 30)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -25,23 +25,20 @@ def single_contact(request: HttpRequest, contact_id: int):
 
 
 def search(request: HttpRequest):
-    search_value: str = request.GET.get("q", "").strip()
+    search_value: str = request.GET.get("q", "").strip()  # type: ignore[]
 
     if not search_value:
         return redirect("contact:index")
 
     contacts = (
-        Contact.objects.filter(show=True)
+        Contact.objects.filter(show=True)  # type: ignore[]
         .filter(
-            Q(first_name__icontains=search_value)
-            | Q(last_name__icontains=search_value)
-            # | Q(phone__icontains=search_value)
-            # | Q(email__icontains=search_value)
+            Q(first_name__icontains=search_value) | Q(last_name__icontains=search_value)
         )
         .order_by("-id")
     )
     context = {
-        "contacts": contacts,
+        "page_obj": contacts,
         "site_title": "Procurando - ",
         "search_value": search_value,
     }
