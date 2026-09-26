@@ -1,26 +1,7 @@
-from django import forms
-from django.core.exceptions import ValidationError
-
-# from django.core.paginator import Paginator
-# from django.db.models import Q
 from django.http import HttpRequest
-from django.shortcuts import render  # , get_object_or_404, redirect
+from django.shortcuts import render
 
-from contact.models import Contact
-
-
-class ContactForm(forms.ModelForm):
-    class Meta:
-        model = Contact
-        fields = ("first_name", "last_name", "phone")
-
-    def clean(self):
-        cleaned_data = self.cleaned_data
-
-        self.add_error(
-            "first_name", ValidationError("Preencha o campo acima.", code="invalid")
-        )
-        return super().clean()
+from contact.forms import ContactForm
 
 
 def create(request: HttpRequest):

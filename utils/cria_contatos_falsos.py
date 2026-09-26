@@ -7,7 +7,6 @@ from random import choice
 import django
 from django.conf import settings
 
-
 DJANGO_BASE_DIR = Path(__file__).parent.parent
 NUMERO_DE_OBJETOS = 1000
 
