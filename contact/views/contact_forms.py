@@ -10,4 +10,4 @@ def create(request: HttpRequest):
         return render(request, "contact/create.html", context)
 
     context = {"form": ContactForm()}
-    return render(request, "contact/create.html")
+    return render(request, "contact/create.html", context)
