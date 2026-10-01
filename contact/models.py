@@ -12,7 +12,7 @@ class Category(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self) -> str:
-        return self.name
+        return self.name  # type: ignore[]
 
 
 class Contact(models.Model):
@@ -22,7 +22,7 @@ class Contact(models.Model):
     email = models.EmailField(max_length=254, blank=True)
     created_date = models.DateTimeField(default=timezone.now)
     description = models.TextField(blank=True)
-    show = models.BooleanField(default=True)
+    show = models.BooleanField(default=True)  # type: ignore[]
     picture = models.ImageField(blank=True, upload_to="pictures/%Y/%m")
     # media/pictures/ano/mes/
     category = models.ForeignKey(

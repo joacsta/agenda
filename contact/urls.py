@@ -9,4 +9,5 @@ urlpatterns = [
     path("search/", views.search, name="search"),
     path("contact/<int:contact_id>/", views.single_contact, name="single_contact"),
     path("contact/create/", views.create, name="create"),
+    path("contact/<int:contact_id>/update/", views.update, name="update"),
 ]

@@ -37,36 +37,6 @@ class ContactForm(forms.ModelForm):
         label="Telefone",
         help_text="digite seu número de telefone aqui".capitalize(),
     )
-    # email = forms.EmailField(
-    #     widget=forms.TextInput(
-    #         attrs={
-    #             "class": "classe-a classe-b",
-    #             "placeholder": "joaocsta@gmail.com",
-    #         }
-    #     ),
-    #     label="E-mail",
-    #     help_text="digite seu e-mail aqui".capitalize(),
-    # )
-    # description = forms.CharField(
-    #     widget=forms.TextInput(
-    #         attrs={
-    #             "class": "classe-a classe-b",
-    #             "placeholder": "Escreva sua descrição aqui",
-    #         }
-    #     ),
-    #     label="Descrição",
-    #     help_text="digite seu sobrenome aqui".capitalize(),
-    # )
-    # category = forms.CharField(
-    #     widget=forms.TextInput(
-    #         attrs={
-    #             "class": "classe-a classe-b",
-    #             "placeholder": "Trabalho",
-    #         }
-    #     ),
-    #     label="Categoria",
-    #     help_text="digite sua categoria aqui".capitalize(),
-    # )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
