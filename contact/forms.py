@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest
 from django.shortcuts import render
@@ -7,39 +8,11 @@ from contact.models import Contact
 
 
 class ContactForm(forms.ModelForm):
-    first_name = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "classe-a classe-b",
-                "placeholder": "João",
-            }
-        ),
+    picture = forms.ImageField(
+        widget=forms.FileInput(attrs={"accept": "image/*"}),
         label="Nome",
         help_text="digite seu nome aqui".capitalize(),
     )
-    last_name = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "classe-a classe-b",
-                "placeholder": "Costa",
-            }
-        ),
-        label="Sobrenome",
-        help_text="digite seu sobrenome aqui".capitalize(),
-    )
-    phone = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "classe-a classe-b",
-                "placeholder": "(61) 99999-0000",
-            }
-        ),
-        label="Telefone",
-        help_text="digite seu número de telefone aqui".capitalize(),
-    )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     class Meta:
         model = Contact
@@ -50,6 +23,7 @@ class ContactForm(forms.ModelForm):
             "email",
             "description",
             "category",
+            "picture",
         )
 
     def clean(self):
@@ -82,3 +56,6 @@ def create(request: HttpRequest):
 
     context = {"form": ContactForm(request.POST)}
     return render(request, "contact/create.html", context)
+
+
+class RegisterForm(UserCreationForm): ...

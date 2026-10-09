@@ -1,12 +1,11 @@
 {% extends "global/base.html" %}
 {% block content %}
-<h1>Criação de contatos aqui.</h1>
 <div class="form-wrapper">
-    <h2>Contato</h2>
-    <form action="{{ form_action }}" method="POST" enctype="multipart/form-data">
+    <h2>Register</h2>
+    <form action="{{ form_action }}" method="POST">
         {% csrf_token %}
         <div class="form-content">
-            {% for field in form  %}
+            {% for field in form %}
             <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
@@ -15,14 +14,8 @@
                 <p class="help-text">{{ field.help_text }}</p>
                 {% endif %}
             </div>
-                {% if field.name == 'picture' and field.value.url %}
-                <div class="form-group">
-                    <img src="{{ field.value.url }}" alt="">
-                </div>
-                {% endif %}
             {% endfor %}
         </div>
-
         {% if form.non_field_errors %}
         <div class="form-content">
             <div class="form-group">
@@ -32,10 +25,9 @@
             </div>
         </div>
         {% endif %}
-
         <div class="form-content">
             <div class="form-group">
-                <button class="btn" type="submit">Send</button>
+                <button type="submit" class="btn">Enviar</button>
             </div>
         </div>
     </form>
